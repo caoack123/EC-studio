@@ -1,0 +1,7 @@
+{
+  "name": "E-Com Studio AI",
+  "description": "Professional product photography and virtual model try-on studio for DTC brands.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
