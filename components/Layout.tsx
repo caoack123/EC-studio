@@ -3,7 +3,6 @@ import React from 'react';
 import { AppTab } from '../types';
 
 interface LayoutProps {
-  // Fixed: React.ActiveNode is not a valid member of React namespace. Changed to React.ReactNode.
   children: React.ReactNode;
   activeTab: AppTab;
   setActiveTab: (tab: AppTab) => void;
@@ -14,7 +13,6 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
     { id: AppTab.PRODUCT_STUDIO, label: 'Product Studio', icon: '📸' },
     { id: AppTab.MODEL_STUDIO, label: 'Model Studio', icon: '👤' },
     { id: AppTab.TRY_ON, label: 'Virtual Try-On', icon: '👗' },
-    { id: AppTab.BATCH_STUDIO, label: 'Sequence Mode', icon: '⚡' },
     { id: AppTab.GALLERY, label: 'Asset Gallery', icon: '🖼️' },
   ];
 
@@ -26,17 +24,17 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
           <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
             E-Com Studio
           </h1>
-          <p className="text-xs text-slate-500 font-medium">POWERED BY GEMINI AI</p>
+          <p className="text-xs text-slate-500 font-medium tracking-widest uppercase">Studio Ready AI</p>
         </div>
 
-        <nav className="flex-1 space-y-1">
+        <nav className="flex-1 space-y-2">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
                 activeTab === item.id
-                  ? 'bg-indigo-50 text-indigo-700 font-semibold shadow-sm'
+                  ? 'bg-indigo-600 text-white font-semibold shadow-lg shadow-indigo-200'
                   : 'text-slate-600 hover:bg-slate-50'
               }`}
             >
@@ -48,8 +46,11 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
 
         <div className="mt-auto pt-6 border-t border-slate-100">
           <div className="bg-slate-900 text-white p-4 rounded-2xl">
-            <p className="text-xs font-semibold uppercase tracking-wider opacity-60">Status</p>
-            <p className="text-sm mt-1">Studio Online</p>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <p className="text-[10px] font-bold uppercase tracking-wider opacity-60">Engine Status</p>
+            </div>
+            <p className="text-sm mt-1 font-medium">Gemini 2.5 Active</p>
           </div>
         </div>
       </aside>
