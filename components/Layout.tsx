@@ -3,6 +3,7 @@ import React from 'react';
 import { AppTab } from '../types';
 
 interface LayoutProps {
+  // Fixed: React.ActiveNode is not a valid member of React namespace. Changed to React.ReactNode.
   children: React.ReactNode;
   activeTab: AppTab;
   setActiveTab: (tab: AppTab) => void;
@@ -19,6 +20,7 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
+      {/* Sidebar - Navigation */}
       <aside className="w-full md:w-64 bg-white border-r border-slate-200 p-6 flex flex-col sticky top-0 h-auto md:h-screen">
         <div className="mb-8">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">
@@ -34,12 +36,12 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
               onClick={() => setActiveTab(item.id)}
               className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
                 activeTab === item.id
-                  ? 'bg-indigo-50 text-indigo-700 font-semibold'
+                  ? 'bg-indigo-50 text-indigo-700 font-semibold shadow-sm'
                   : 'text-slate-600 hover:bg-slate-50'
               }`}
             >
               <span className="text-xl">{item.icon}</span>
-              <span className="text-sm">{item.label}</span>
+              <span className="text-sm font-medium">{item.label}</span>
             </button>
           ))}
         </nav>
@@ -47,11 +49,12 @@ const Layout: React.FC<LayoutProps> = ({ children, activeTab, setActiveTab }) =>
         <div className="mt-auto pt-6 border-t border-slate-100">
           <div className="bg-slate-900 text-white p-4 rounded-2xl">
             <p className="text-xs font-semibold uppercase tracking-wider opacity-60">Status</p>
-            <p className="text-sm mt-1">Ready for Studio</p>
+            <p className="text-sm mt-1">Studio Online</p>
           </div>
         </div>
       </aside>
 
+      {/* Main Content Area */}
       <main className="flex-1 overflow-y-auto custom-scrollbar bg-slate-50 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
           {children}
